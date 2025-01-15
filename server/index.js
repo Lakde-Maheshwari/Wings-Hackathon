@@ -40,7 +40,7 @@ const connectDB = () => {
 const startServer = async () => {
   try {
     connectDB();
-    app.listen(8000, () => console.log("Server started at 8000"));
+    app.listen(8002, () => console.log("Server started at 8002"));
   } catch (error) {
     console.log(error);
   }

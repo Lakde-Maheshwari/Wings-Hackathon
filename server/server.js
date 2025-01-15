@@ -21,19 +21,37 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 
-
-////////////////  REAL TIME SETUP ////////////////////
+// Real-time communication setup
 io.on('connection', (socket) => {
     console.log(`User connected: ${socket.id}`);
-    socket.on('message', (data) => {
-        io.emit('message', data);
+
+    // Join a specific room
+    socket.on('joinRoom', ({ roomId, username }) => {
+        socket.join(roomId);
+        console.log(`${username} joined room: ${roomId}`);
+        io.to(roomId).emit('notification', `${username} has joined the room`);
     });
+
+    // Handle messages in a room
+    socket.on('sendMessage', ({ roomId, message, username }) => {
+        console.log(`Message from ${username} in room ${roomId}: ${message}`);
+        io.to(roomId).emit('message', { username, message });
+    });
+
+    // Leave a room
+    socket.on('leaveRoom', ({ roomId, username }) => {
+        socket.leave(roomId);
+        console.log(`${username} left room: ${roomId}`);
+        io.to(roomId).emit('notification', `${username} has left the room`);
+    });
+
+    // Disconnect
     socket.on('disconnect', () => {
         console.log(`User disconnected: ${socket.id}`);
     });
 });
 
-const PORT = process.env.PORT || 9002;
+const PORT = process.env.PORT || 8002;
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
