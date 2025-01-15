@@ -9,7 +9,8 @@ import LoginForm from './components/Login'
 import RegisterForm from './components/Register'
 import Whiteboard from './components/whiteboard'
 import BadCredentials from './components/BadCredentials'
-
+import Profile from './components/profile'  
+import CoinReward from './components/rewardComponent'
 function App() {
 
   const location = useLocation();
@@ -23,12 +24,14 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<LoginForm />} />
         <Route path='/register' element={<RegisterForm />} />
+        <Route path='/profile' element={<Profile />} />
         <Route path='/invalidinfo' element={< BadCredentials/>} />
       </Routes>
       <Routes>
         <Route path='/videochat' element={<VideoChat />} />
         <Route path='/join' element={<LobbyScreen />} />
         <Route path='/whiteboard' element={<Whiteboard />} />
+        <Route path='/reward' element={< CoinReward/>} />
       </Routes>
     </div>
   )
