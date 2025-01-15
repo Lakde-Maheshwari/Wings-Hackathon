@@ -6,7 +6,7 @@ const LobbyScreen = () => {
   const [email, setEmail] = React.useState("");
   const [roomID, setRoomID] = React.useState("");
 
-  const socket = useSocket
+  const socket = useSocket()
 
 
 //   logic to submit the form data

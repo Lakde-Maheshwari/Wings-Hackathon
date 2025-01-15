@@ -1,40 +1,23 @@
-import express from "express";
-import * as dotenv from "dotenv";
-import cors from "cors";
-import mongoose from "mongoose";
-import UserRoutes from "./routes/user.js";
-import PropertyRoutes from "./routes/properties.js";
+const { Server } = require("socket.io");
 
-dotenv.config();
-
-const app = express();
-app.use(cors());
-app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ extended: true })); // for form data
-
-app.use("/api/user/", UserRoutes);
-app.use("/api/property/", PropertyRoutes);
-
-
-app.use((err, req, res, next) => {
-  const status = err.status || 500;
-  const message = err.message || "Something went wrong";
-  return res.status(status).json({
-    success: false,
-    status,
-    message,
-  });
+const io = new Server(8000, {
+    cors: true,
 });
 
-const connectDB = () => {
-  mongoose.set("strictQuery", true);
-  mongoose
-    .connect(process.env.MONGODB_URL)
-    .then(() => console.log("Connected to Mongo DB"))
-    .catch((err) => {
-      console.error("Failed to connect with mongo");
-      console.error(err);
+const emailToSocketIdMap = new Map();
+const socketidToEmailMap = new Map();
+
+io.on('connection', (socket) => {
+    console.log(`Socket connected`, socket.id);
+    socket.on("room:join", (data) => {
+       const {email, room} = data
+       emailToSocketIdMap.set(email, socket.id)
+       socketidToEmailMap.set(socket.id, email);
+       io.to(room).emit("user:joined", {email, id: socket.id});
+       socket.join(room);
+       io.to(socket.id).emit('room:join', data);
     });
+<<<<<<< HEAD
 };
 
 const startServer = async () => {
@@ -47,3 +30,7 @@ const startServer = async () => {
 };
 
 startServer();
+=======
+    socket.on
+});
+>>>>>>> 7f3b5c6a53de8c9d0699b00efe2746aa372c1547
