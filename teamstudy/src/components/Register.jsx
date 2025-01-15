@@ -6,7 +6,7 @@ const RegisterForm = () => {
     e.preventDefault();
     console.log("Register");
   };
-
+  
   return (
     <>
       <div className="flex justify-center items-center mt-6">
