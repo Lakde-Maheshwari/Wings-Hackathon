@@ -17,8 +17,7 @@ io.on('connection', (socket) => {
        socket.join(room);
        io.to(socket.id).emit('room:join', data);
     });
-<<<<<<< HEAD
-};
+});
 
 const startServer = async () => {
   try {
@@ -30,7 +29,3 @@ const startServer = async () => {
 };
 
 startServer();
-=======
-    socket.on
-});
->>>>>>> 7f3b5c6a53de8c9d0699b00efe2746aa372c1547
