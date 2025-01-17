@@ -17,12 +17,7 @@ io.on('connection', (socket) => {
        socket.join(room);
        io.to(socket.id).emit('room:join', data);
     });
-<<<<<<< HEAD
-
-
-=======
 });
->>>>>>> e210a2c542fe14a42ac0d20a0116a3d46cd842a0
 
 const startServer = async () => {
   try {
@@ -35,8 +30,5 @@ const startServer = async () => {
 
 startServer();
     socket.on
-<<<<<<< HEAD
 });
 
-=======
->>>>>>> e210a2c542fe14a42ac0d20a0116a3d46cd842a0
