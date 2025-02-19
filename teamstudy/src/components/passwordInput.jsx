@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const PasswordInput = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -9,18 +10,18 @@ const PasswordInput = () => {
 
     return (
         <>
-            <div className="flex ">
+            <div className="relative flex items-center  m-auto mb-3 w-56">
                 <input
                     type={passwordVisible ? "text" : "password"}
-                    className="m-3 p-3 ml-44 rounded-md"
+                    className="p-3  rounded-md border border-gray-300 w-full"
                     placeholder="Password"
                 />
                 <button
                     type="button"
-                    onClick={togglePasswordVisible}
-                    className="p-2 bg-blue-700 text-white rounded-md m-3"
+                    className="absolute right-3"
+                    onClick={() => setPasswordVisible(!passwordVisible)}
                 >
-                    {passwordVisible ? "Hide" : "Show"}
+                    <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
                 </button>
             </div>
         </>

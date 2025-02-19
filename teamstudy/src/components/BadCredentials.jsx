@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "./button";
 
 const BadCredentials = () => {
@@ -18,9 +17,9 @@ const BadCredentials = () => {
         </div>
 
         <div className="flex justify-center items-center mt-6">
-            <Button label="Go Back" onClick={() => window.history.back()} />
-            <Button label="Login Again" onClick={GotoLoginPage}/>
-            <Button label="Register here" onClick={GotoSigninPage}/>
+            <Button label="Go Back" color="blue" onClick={() => window.history.back()} />
+            <Button label="Login Again" color="blue" onClick={GotoLoginPage}/>
+            <Button label="Register here" color="blue" onClick={GotoSigninPage}/>
         </div>
         </div>
     );

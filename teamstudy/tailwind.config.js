@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'custom-bg': "url('/teamstudy/public/bg1.jpg')",
+      },
       animation: {
         spinY: 'spinY 2s linear infinite',
       },

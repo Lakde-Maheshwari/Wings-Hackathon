@@ -1,37 +1,39 @@
 import './App.css'
 import React from 'react'
-import VideoChat from './components/videochat'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import LobbyScreen from './components/LobbyScreen'
-import {Routes,Route, useLocation} from 'react-router-dom'
-import Home from './components/Home'
-import LoginForm from './components/Login'
-import RegisterForm from './components/Register'
-import Whiteboard from './components/whiteboard'
-import BadCredentials from './components/BadCredentials'
-import Profile from './components/profile'  
-import CoinReward from './components/rewardComponent'
+import Home from './components/Home.jsx'
+import LoginForm from './components/Login.jsx'
+import Signup from './components/Register.jsx'
+import Whiteboard from './components/whiteboard.jsx'
+import BadCredentials from './components/BadCredentials.jsx'
+import Profile from './components/profile.jsx'
+import CoinReward from './components/rewardComponent.jsx'
+import GroupDashboard from './components/groupdashboard.jsx'
+import ChatPage from './components/chatpage.jsx'
+import GroupResources from './components/groupResources.jsx'
+import TaskForm from './components/taskform.jsx'
+import Poll from './components/Poll.jsx'
+import VideoChat from './components/videochat'
+
 function App() {
-
-  const location = useLocation();
-
-  const hideNavbarRoutes = ["/login", "/register","/whiteboard","/videochat","/join","/invalidinfo"];
-
   return (
     <div className='App'>
-      {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
+      <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<LoginForm />} />
-        <Route path='/register' element={<RegisterForm />} />
+        <Route path='/register' element={<Signup />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/invalidinfo' element={< BadCredentials/>} />
-      </Routes>
-      <Routes>
+        <Route path='/invalidinfo' element={<BadCredentials />} />
+        <Route path='/group' element={<GroupDashboard />} />
+        <Route path='/groupchat' element={<ChatPage />} />
+        <Route path='/taskform' element={<TaskForm />} />
+        <Route path='/reward' element={<CoinReward />} />
+        <Route path='/resources' element={<GroupResources />} />
+        <Route path='/poll' element={<Poll />} />
         <Route path='/videochat' element={<VideoChat />} />
-        <Route path='/join' element={<LobbyScreen />} />
         <Route path='/whiteboard' element={<Whiteboard />} />
-        <Route path='/reward' element={< CoinReward/>} />
       </Routes>
     </div>
   )
